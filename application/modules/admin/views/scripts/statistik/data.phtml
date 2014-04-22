@@ -1,0 +1,91 @@
+<?
+$count = count($this->rows);
+if ($count > 0)
+{
+	switch($this->jenis)
+	{
+		case "1":	$caption = "Statistik Perkara<br>Bulan <u>" . $this->bulan . "</u> Tahun <u>" . $this->tahun . "</u>";		break;
+		case "2":	$caption = "Statistik Perkara per Kategori Perkara<br>Bulan <u>" . $this->bulan . "</u> Tahun <u>" . $this->tahun . "</u>";		break;
+		case "3":	$caption = "Statistik Perkara per Jenis Perkara<br>Bulan <u>" . $this->bulan . "</u> Tahun <u>" . $this->tahun . "</u>";		break;
+		case "4":	$caption = "Statistik Perkara per Status Perkara<br>Bulan <u>" . $this->bulan . "</u> Tahun <u>" . $this->tahun . "</u>";		break;
+	}
+?>
+	<script type="text/javascript">
+	$(function() {
+		$("table")
+			.tablesorter({theme: 'blue', widthFixed: true, widgets: ['zebra', 'filter']})
+			.tablesorterPager({container: $(".pager"), 
+								output: '{startRow} - {endRow} / {filteredRows} ({totalRows})', 
+								fixedHeight: true, 
+								removeRows: false, 
+								cssGoto: '.gotoPage' });
+	});
+	</script>
+
+	<h2><center><?=$caption;?></center></h2>
+	<hr/>
+
+	<?
+	$output = "<chart thousandSeparator='.' toolTipSepChar='=' formatNumberScale='0' caption='' XAxisName='Keterangan' YAxisName='Jumlah' labelDisplay='ROTATE' slantLabels='1'>";
+
+	foreach ($this->rows as $row) 
+	{
+		$output .= "<set label='" . $row->keterangan . "' value='" . $row->jumlah . "' />";
+	}
+	$output .= "</chart>";
+	?>
+	<script type="text/javascript" src="/js/FusionMaps.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var dataoutput = "<?=$output;?>";
+			var count ="<?=$count;?>";
+			var map = new FusionMaps("<?=$this->url_statik;?>/media/Column3D.swf", "Map_Id", 700, 400, "0", "0");
+			map.setDataXML(dataoutput);
+			map.setAttribute("mode","transparent");
+			if (count!=0)
+			{
+				map.render("mapDiv");
+			} 
+		});
+	</script>
+	<div id="mapDiv"></div>
+
+	<?=$this->pager;?>
+
+	<table id="myTable" class="tablesorter" style="margin:auto;" width="100%">
+		<thead>
+			<tr>
+				<th>NO.</th>
+				<th>KETERANGAN</th>
+				<th>JUMLAH</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			$total = 0;
+			$indeks = 1;
+			foreach($this->rows as $row)
+			{
+				echo "<tr>";
+				echo "<td>" . $indeks . "</td>";
+				echo "<td>" . $row->keterangan . "</td>";
+				echo "<td>" . $row->jumlah . "</td>";
+				echo "</tr>";
+
+				$total += $row->jumlah;
+				$indeks++;
+			}
+			?>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>&nbsp;</td>
+				<td>TOTAL</td>
+				<td><?=$total;?></td>
+			</tr>
+		</tfoot>
+	</table>
+<? } else {
+	echo "Data tidak ditemukan!";	
+}
+?>

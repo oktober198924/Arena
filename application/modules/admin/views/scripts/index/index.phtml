@@ -1,0 +1,103 @@
+<style>
+.column { float: left; padding-bottom: 100px; }
+.portlet { margin: 0 1em 1em 0; }
+.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+.portlet-header .ui-icon { float: right; }
+.portlet-content { padding: 0.4em; }
+.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+.ui-sortable-placeholder * { visibility: hidden; }
+</style>
+
+<div class="column" style="width: 60%;">
+
+	<div class="portlet">
+		<div class="portlet-header">Struktur Organisasi</div>
+		<div class="portlet-content">
+			<img src="<?=$this->url_berkas;?>/dokumen/struktur-organisasi.jpg">
+		</div>
+	</div>
+	
+	<div class="portlet">
+		<div class="portlet-header">User Manual</div>
+		<div class="portlet-content">
+			<table width="100%">
+				<tr>
+					<td align="center"><a href="<?=$this->url_berkas;?>/files/Panduan_Aktifasi_Email.pdf" target="_blank"><img src="<?=$this->url_statik;?>/images/admin/mantel/pdf_icon.png"><br>Panduan Aktifasi Email</a></td>
+					<td align="center"><a href="<?=$this->url_berkas;?>/files/User_Manual_Yankes.pdf" target="_blank"><img src="<?=$this->url_statik;?>/images/admin/mantel/pdf_icon.png"><br>Panduan Aplikasi Pamdal</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="portlet">
+		<div class="portlet-header">Galeri Foto</div>
+		<div class="portlet-content">
+			<?
+			$indeks = 1;
+			echo '<table width="100%" style="border-spacing: 10px;  border-collapse: separate;">';
+			foreach($this->rows as $row)
+			{
+				if ($indeks == 1)
+					echo '<tr>';
+
+				echo '<td><img src="' . $this->url_berkas . '/foto/' . $row->file_name . '" title="' . $row->judul . '" width="80" height="60"></td>';
+				
+				if ($indeks % 4 == 0)
+					echo '</tr><tr>';
+
+				if ($indeks == 12)
+					break;
+
+				$indeks++;
+			}
+			echo '</table>';
+			?>
+		</div>
+	</div>
+
+</div>
+
+<div class="column" style="width: 40%;">
+	
+	<div class="portlet">
+		<div class="portlet-header">Uraian Tugas</div>
+		<div class="portlet-content">
+			<ul>
+				<li>a.	Melaksanakan Rencana Kegiatan SubBagian Pelaksanaan Pengamanan berdasarkan rencana operasional kegiatan Bagian</li>
+				<li>b.	Menjaga keamanan Kompleks Gedung MPR/DPR/DPD, rumah jabatan Pimpinan DPR RI, Anggota DPR RI dan Sekretaris Jenderal DPR RI dan Wisma Griya Sabha DPR RI Kopo untuk mencegah terjadinya gangguan keamanan</li>
+				<li>c.	Memeriksa kendaraan dan barang yang masuk dan keluar Kompleks Gedung MPR/DPR/DPD untuk mencegah terjadinya hal-hal yang tidak diinginkan</li>
+				<li>d.	Menjaga keamanan kunjungan delegasi dan tamu wisata untuk mencegah terjadinya gangguan keamanan</li>
+				<li>e.	Mengatur ketertiban lalu lintas kendaraan dan parkir serta pemanggilan pengemudi kendaraan untuk kelancaran dan ketertiban lalu lintas dan parkir</li>
+				<li>f.	Menjaga keamanan acara yang diselenggarakan Pimpinan DPR RI dan Pimpinan Sekretariat Jenderal DPR RI di dalam dan luar Gedung DPR RI sesuai pedoman yang telah ditetapkan</li>
+				<li>g.	Menertibkan pemakaian tanda pengenal pegawai dan tamu untuk memudahkan pengawasan dan pengamanan</li>
+				<li>h.	Memeriksa dan mencatat tamu yang akan memasuki Komplek Gedung Perkantoran MPR/DPR/DPD RI</li>
+				<li>i.	Mengoperasikan barergaet dan melakukan monitor terhadap kendaraan masuk yang melintas di UUVIS melalui monitor CCTV</li>
+				<li>j.	Melaksanakan tugas lain terkait yang diberikan oleh atasan </li>
+				<li>k.	Membuat konsep laporan kerja kepada atasan secara berkala dan setiap waktu diperlukan </li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		$( ".column" ).sortable({
+			connectWith: ".column"
+		});
+
+		$( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+			.find( ".portlet-header" )
+				.addClass( "ui-widget-header ui-corner-all" )
+				.prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
+				.end()
+			.find( ".portlet-content" );
+
+		$( ".portlet-header .ui-icon" ).click(function() {
+			$( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+			$( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+		});
+
+		$( ".column" ).disableSelection();
+	});
+</script>

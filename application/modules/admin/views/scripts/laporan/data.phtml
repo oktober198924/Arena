@@ -1,0 +1,122 @@
+<?
+if (count($this->rows) > 0)
+{
+?>
+	<script type="text/javascript">
+	$(function() {
+		$("table")
+			.tablesorter({theme: 'blue', widthFixed: true, widgets: ['zebra', 'filter']})
+			.tablesorterPager({container: $(".pager"), 
+								output: '{startRow} - {endRow} / {filteredRows} ({totalRows})', 
+								fixedHeight: true, 
+								removeRows: false, 
+								cssGoto: '.gotoPage' });
+	});
+	</script>
+
+	<h2><center><?
+	switch($this->jenis)
+	{
+		case "1":
+			echo 'KASUS-KASUS YANG MASUK KE BADAN KEHORMATAN DPR RI MELALUI PENGADUAN';
+			break;
+		case "2":
+			echo 'MATRIKS KEPUTUSAN PERKARA ETIK BADAN KEHORMATAN DPR RI';
+			break;
+	}
+	echo '<br>';
+	if ($this->bulan != "*") {
+		echo 'BULAN <u>' . $this->bulan . '</u>&nbsp;';
+	}
+	echo 'TAHUN <u>' . $this->tahun . '</u>&nbsp;';
+	?>
+	</center></h2>
+	<br/>
+	<?=$this->pager;?>
+
+	<?
+	$indeks = 1;
+	switch($this->jenis)
+	{
+		case "1":
+			?>
+			<table class="tablesorter">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Tanggal</th>
+						<th>Pengadu</th>
+						<th>Materi aduan</th>
+						<th>Ditindaklanjuti</th>
+						<th>Ditunda / dipending</th>
+						<th>Tidak ditindaklanjuti / drop</th>
+						<th>Alasan</th>
+						<th>Keterangan</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					foreach($this->rows as $row)
+					{
+						echo "<tr>";
+						echo "<td>" . $indeks . ".</td>";
+						echo "<td>" . $row->tanggal_perkara . "</td>";
+						echo "<td>" . $row->nama . "</td>";
+						echo "<td>" . $row->ringkasan_aduan . "</td>";
+						echo "<td>" . $row->hasil_rapat . "</td>";
+						echo "<td>&nbsp;</td>";
+						echo "<td>&nbsp;</td>";
+						echo "<td>" . $row->alasan_status . "</td>";
+						echo "<td>" . $row->keterangan_perkara . "</td>";
+						echo "</tr>";
+
+						$indeks++;
+					}
+					?>
+				 </tbody>
+			</table>
+			<?
+			break;
+		case "2":
+			?>
+			<table class="tablesorter">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Keputusan Perkara Etik BK</th>
+						<th>Perkara</th>
+						<th>Pasal Yang Dilanggar</th>
+						<th>Disampaikan Ke Pimpinan Tanggal</th>
+						<th>Dijadwalkan Di Bamus</th>
+						<th>Dibacakan Di Paripurna</th>
+						<th>Keterangan</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					foreach($this->rows as $row)
+					{
+						echo "<tr>";
+						echo "<td>" . $indeks . ".</td>";
+						echo "<td>" . $row->tanggal_keputusan . "<br>" . $row->keputusan  . "<br>" . $row->no_keputusan . "</td>";
+						echo "<td>" . $row->ringkasan_aduan . "</td>";
+						echo "<td>" . $row->pasal_dilanggar . "</td>";
+						echo "<td>&nbsp;</td>";
+						echo "<td>" . $row->jadwal_bamus . "<br>" . $row->nama_anggota_pembaca_bamus . "</td>";
+						echo "<td>" . $row->jadwal_paripurna . "<br>" . $row->nama_anggota_pimpinan_paripurna . "<br>" . $row->keterangan_paripurna . "</td>";
+						echo "<td>" . $row->keterangan_keputusan . "</td>";
+						echo "</tr>";
+
+						$indeks++;
+					}
+					?>
+				 </tbody>
+			</table>
+			<?
+			break;
+	}
+	?>
+<? } else {
+	echo "Data tidak ditemukan!";	
+}
+?>
