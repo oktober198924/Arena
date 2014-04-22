@@ -1,0 +1,300 @@
+<?
+if (count($this->rows) > 0)
+{
+?>
+	<script type="text/javascript">
+	$(function() {
+		$("table")
+		.tablesorter({theme: 'blue', widthFixed: true, widgets: ['zebra', 'filter']})
+		.tablesorterPager({container: $(".pager"), 
+							output: '{startRow} - {endRow} / {filteredRows} ({totalRows})', 
+							fixedHeight: true, 
+							removeRows: false, 
+							cssGoto: '.gotoPage' });
+	});
+	</script>
+
+	<h2><center><?
+	switch($this->jenis)
+	{
+		case "1":
+			echo 'Rekapitulasi Per Bidang';
+			break;
+		case "2":
+			echo 'Rekapitulasi Per Pemeriksaan';
+			break;
+		case "3":
+			echo 'Rekapitulasi Per Formulir';
+			break;
+	}
+	echo '<br>';
+	if ($this->bulan != "*") {
+		echo 'Bulan <u>' . $this->bulan . '</u>&nbsp;';
+	}
+	echo 'Tahun <u>' . $this->tahun . '</u>';
+	?>
+	</center></h2>
+	<br/>
+	<?=$this->pager;?>
+
+	<?
+	$indeks = 1;
+	switch($this->jenis)
+	{
+		case "1":
+			?>
+			<table class="tablesorter">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Bidang</th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>Mei</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Agu</th>
+						<th>Sep</th>
+						<th>Okt</th>
+						<th>Nov</th>
+						<th>Des</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					$indeks = 1;
+					foreach($this->rows as $row)
+					{
+						echo '<tr>';
+						echo '<td>' . $indeks++ . '.</td>';
+						echo '<td>' . $row->bidang . '</td>';
+						echo '<td align="right">' . $row->jan . '</td>';
+						echo '<td align="right">' . $row->feb . '</td>';
+						echo '<td align="right">' . $row->mar . '</td>';
+						echo '<td align="right">' . $row->apr . '</td>';
+						echo '<td align="right">' . $row->mei . '</td>';
+						echo '<td align="right">' . $row->jun . '</td>';
+						echo '<td align="right">' . $row->jul . '</td>';
+						echo '<td align="right">' . $row->ags . '</td>';
+						echo '<td align="right">' . $row->sep . '</td>';
+						echo '<td align="right">' . $row->okt . '</td>';
+						echo '<td align="right">' . $row->nov . '</td>';
+						echo '<td align="right">' . $row->des . '</td>';
+						echo '<td align="right">' . $row->total . '</td>';
+						echo '</tr>';
+
+						$total1 += $row->jan;
+						$total2 += $row->feb;
+						$total3 += $row->mar;
+						$total4 += $row->apr;
+						$total5 += $row->mei;
+						$total6 += $row->jun;
+						$total7 += $row->jul;
+						$total8 += $row->ags;
+						$total9 += $row->sep;
+						$total10 += $row->okt;
+						$total11 += $row->nov;
+						$total12 += $row->des;
+						$total += $row->total;
+					}
+					?>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>&nbsp;</td>
+						<td>Total</td>
+						<td align="right"><?=$total1;?></td>
+						<td align="right"><?=$total2;?></td>
+						<td align="right"><?=$total3;?></td>
+						<td align="right"><?=$total4;?></td>
+						<td align="right"><?=$total5;?></td>
+						<td align="right"><?=$total6;?></td>
+						<td align="right"><?=$total7;?></td>
+						<td align="right"><?=$total8;?></td>
+						<td align="right"><?=$total9;?></td>
+						<td align="right"><?=$total10;?></td>
+						<td align="right"><?=$total11;?></td>
+						<td align="right"><?=$total12;?></td>
+						<td align="right"><?=$total;?></td>
+					</tr>
+				</tfoot>
+			</table>
+			<?
+			break;
+		
+		case "2":
+			?>
+			<table class="tablesorter">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Jenis Perkara</th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>Mei</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Agu</th>
+						<th>Sep</th>
+						<th>Okt</th>
+						<th>Nov</th>
+						<th>Des</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					$indeks = 1;
+					foreach($this->rows as $row)
+					{
+						echo '<tr>';
+						echo '<td>' . $indeks++ . '.</td>';
+						echo '<td>' . $row->jenis_pemeriksaan . '</td>';
+						echo '<td align="right">' . $row->jan . '</td>';
+						echo '<td align="right">' . $row->feb . '</td>';
+						echo '<td align="right">' . $row->mar . '</td>';
+						echo '<td align="right">' . $row->apr . '</td>';
+						echo '<td align="right">' . $row->mei . '</td>';
+						echo '<td align="right">' . $row->jun . '</td>';
+						echo '<td align="right">' . $row->jul . '</td>';
+						echo '<td align="right">' . $row->ags . '</td>';
+						echo '<td align="right">' . $row->sep . '</td>';
+						echo '<td align="right">' . $row->okt . '</td>';
+						echo '<td align="right">' . $row->nov . '</td>';
+						echo '<td align="right">' . $row->des . '</td>';
+						echo '<td align="right">' . $row->total . '</td>';
+						echo '</tr>';
+
+						$total1 += $row->jan;
+						$total2 += $row->feb;
+						$total3 += $row->mar;
+						$total4 += $row->apr;
+						$total5 += $row->mei;
+						$total6 += $row->jun;
+						$total7 += $row->jul;
+						$total8 += $row->ags;
+						$total9 += $row->sep;
+						$total10 += $row->okt;
+						$total11 += $row->nov;
+						$total12 += $row->des;
+						$total += $row->total;
+					}
+					?>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>&nbsp</td>
+						<td>Total</td>
+						<td align="right"><?=$total1;?></td>
+						<td align="right"><?=$total2;?></td>
+						<td align="right"><?=$total3;?></td>
+						<td align="right"><?=$total4;?></td>
+						<td align="right"><?=$total5;?></td>
+						<td align="right"><?=$total6;?></td>
+						<td align="right"><?=$total7;?></td>
+						<td align="right"><?=$total8;?></td>
+						<td align="right"><?=$total9;?></td>
+						<td align="right"><?=$total10;?></td>
+						<td align="right"><?=$total11;?></td>
+						<td align="right"><?=$total12;?></td>
+						<td align="right"><?=$total;?></td>
+					</tr>
+				</tfoot>
+			</table>
+			<?
+			break;
+		
+		case "3":
+			?>
+			<table class="tablesorter">
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Tahun</th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>Mei</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Agu</th>
+						<th>Sep</th>
+						<th>Okt</th>
+						<th>Nov</th>
+						<th>Des</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					$indeks = 1;
+					foreach($this->rows as $row)
+					{
+						echo '<tr>';
+						echo '<td>' . $indeks++ . '.</td>';
+						echo '<td>' . $row->tahun . '</td>';
+						echo '<td align="right">' . $row->jan . '</td>';
+						echo '<td align="right">' . $row->feb . '</td>';
+						echo '<td align="right">' . $row->mar . '</td>';
+						echo '<td align="right">' . $row->apr . '</td>';
+						echo '<td align="right">' . $row->mei . '</td>';
+						echo '<td align="right">' . $row->jun . '</td>';
+						echo '<td align="right">' . $row->jul . '</td>';
+						echo '<td align="right">' . $row->ags . '</td>';
+						echo '<td align="right">' . $row->sep . '</td>';
+						echo '<td align="right">' . $row->okt . '</td>';
+						echo '<td align="right">' . $row->nov . '</td>';
+						echo '<td align="right">' . $row->des . '</td>';
+						echo '<td align="right">' . $row->total . '</td>';
+						echo '</tr>';
+
+						$total1 += $row->jan;
+						$total2 += $row->feb;
+						$total3 += $row->mar;
+						$total4 += $row->apr;
+						$total5 += $row->mei;
+						$total6 += $row->jun;
+						$total7 += $row->jul;
+						$total8 += $row->ags;
+						$total9 += $row->sep;
+						$total10 += $row->okt;
+						$total11 += $row->nov;
+						$total12 += $row->des;
+						$total += $row->total;
+					}
+					?>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>&nbsp</td>
+						<td>Total</td>
+						<td align="right"><?=$total1;?></td>
+						<td align="right"><?=$total2;?></td>
+						<td align="right"><?=$total3;?></td>
+						<td align="right"><?=$total4;?></td>
+						<td align="right"><?=$total5;?></td>
+						<td align="right"><?=$total6;?></td>
+						<td align="right"><?=$total7;?></td>
+						<td align="right"><?=$total8;?></td>
+						<td align="right"><?=$total9;?></td>
+						<td align="right"><?=$total10;?></td>
+						<td align="right"><?=$total11;?></td>
+						<td align="right"><?=$total12;?></td>
+						<td align="right"><?=$total;?></td>
+					</tr>
+				</tfoot>
+			</table>
+			<?
+			break;
+	}
+	?>
+<? } else {
+	echo "Data tidak ditemukan!";	
+}
+?>

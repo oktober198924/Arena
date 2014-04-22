@@ -1,0 +1,38 @@
+<script type="text/javascript">
+$(function() {
+	$("#compose").validate({
+		rules: {
+			file_name: {
+				required:false,
+				accept:'pdf'
+			}
+		}
+	});
+});
+</script>
+
+<div class="content-header"></div>
+<div class="UI_Header_Title">
+	<h1><?=$this->avatar;?>  Edit Berita</h1>
+	<div class="header_nav_links"><a href="/admin/berita">Back to Daftar Berita</a></div>
+</div>
+<div class="clear"></div>
+<form id="compose" name="compose" method="post" action="" enctype="multipart/form-data">
+	<div class="tabular">
+		<p><label>Judul</label><input class="required" type="text" id="judul" autocomplete="disable" name="judul" value="<?=$this->row->judul;?>"/> <font color="red">*</font></p>
+		<p><label>Isi</label><textarea class="required" id="isi" wrap="soft" rows="6" cols="60" name="isi" style="overflow: hidden;"><?=$this->row->isi;?></textarea> <font color="red">*</font></p>
+		<p>
+			<label>Attachment</label>
+			<?
+			if ($this->row->file_name == "") {
+				echo '<input class="" type="file" id="file_name" autocomplete="disable" name="file_name"/>';
+			} else {
+				echo '<a href="/admin/berita/popup/id/' . $this->row->id . '" rel="facebox">' . $this->row->file_name . '</a> (' . $this->ByteFormat($this->row->file_size) . ') [<a href="/admin/berita/delete-file/id/' . $this->row->id . '">Delete</a>]';
+			}
+			?>
+		</p>
+
+		<p class="savecancel"><label class="UIbutton-small"><input type="submit" value="Simpan" class=""/></label><a href="/admin/berita" class="UIbutton-small">Batal</a></p>
+	</div>
+</form>
+<div style="clear:both"></div>
