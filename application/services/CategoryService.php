@@ -11,7 +11,7 @@ class CategoryService
 		$select = $this->category->select()
 			->setIntegrityCheck(false)
 			->from(array('a' => 'category'), array('*'))
-			->where('a.id = ?', $id);
+			->where('a.id_category = ?', $id);
 
 		$result = $this->category->fetchRow($select);
 		return $result;
@@ -54,13 +54,13 @@ class CategoryService
 			'tanggal_update' => $tanggal_log
 		);
  		
-		$where = $this->category->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->category->getAdapter()->quoteInto('id_category = ?', $id);
 		$this->category->update($params, $where);
 	}
 
 	public function deleteData($id)
 	{
-		$where = $this->category->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->category->getAdapter()->quoteInto('id_category = ?', $id);
 		$this->category->delete($where);
 	}
 
@@ -75,7 +75,7 @@ class CategoryService
 			'tanggal_update' => $tanggal_log
 		);
  		
-		$where = $this->category->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->category->getAdapter()->quoteInto('id_category = ?', $id);
 		$this->category->update($params, $where);
 	}
 

@@ -60,220 +60,70 @@ $username = Zend_Auth::getInstance()->getIdentity()->nama;
 						<ul>				
 							<li>
 								<span class="action right timespan">
-									<a title="Tambah Tipe Penghuni" class="tt_atas" href="/admin/tipe-penghuni/add">
+									<a title="Tambah Brand" class="tt_atas" href="/admin/brand/add">
 										<span class="add"></span>
 									</a>
 								</span>
-								<a href="/admin/tipe-penghuni/index">Daftar Tipe Penghuni</a>
+								<a href="/admin/brand/index">Daftar Brand</a>
 							</li>	
 						</ul>
-
-						<h1 id="project_tab" class="UI_Action_Bar">
-							Data Penghuni
-						</h1>
-						<ul>
-							<?
-							$TipePenghuniService = new TipePenghuniService();
-							$rows = $TipePenghuniService->getAllData();
-							foreach($rows as $row)
-							{
-								echo '<li>';
-								if ($row->id > 4) {
-									echo '<span class="action right timespan">
-										<a title="Tambah Penghuni" class="tt_atas" href="/admin/penghuni/add/tipe/' . $row->id . '">
-											<span class="add"></span>
-										</a>
-									</span>';
-								}
-								echo '<a href="/admin/penghuni/index/tipe/' . $row->id . '">Daftar ' . $row->tipe_penghuni . '</a>';
-								echo '</li>';
-							}
-							?>
-						</ul>
-
-						<h1 id="project_tab" class="UI_Action_Bar">
-							Data Website
-						</h1>
-						<ul>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Pengumuman" class="tt_atas" href="/admin/pengumuman/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/pengumuman/index">Daftar Pengumuman</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Berita" class="tt_atas" href="/admin/berita/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/berita/index">Daftar Berita</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Regulasi" class="tt_atas" href="/admin/regulasi/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/regulasi/index">Daftar Regulasi</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Foto" class="tt_atas" href="/admin/foto/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/foto/index">Daftar Foto</a>
-							</li>
-						</ul>
-
-						<h1 id="project_tab" class="UI_Action_Bar">
-							Data Transaksi
-						</h1>
-						<ul>
-							<li>
-								<a href="/admin/pengaduan/index">Daftar Pengaduan</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Kendaraan" class="tt_atas" href="/admin/kendaraan/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/kendaraan/index">Daftar Kendaraan</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Kehilangan" class="tt_atas" href="/admin/kehilangan/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/kehilangan/index">Daftar Kehilangan</a>
-							</li>
-						</ul>
-					<? } elseif ($peran == "super") { ?>
-
-					<? } elseif ($peran == "user") { ?>
-						<h1 id="project_tab" class="UI_Action_Bar">
-							Data Referensi
-						</h1>
 						<ul>				
 							<li>
 								<span class="action right timespan">
-									<a title="Tambah Tipe Penghuni" class="tt_atas" href="/admin/tipe-penghuni/add">
+									<a title="Tambah Tipe Penghuni" class="tt_atas" href="/admin/category/add">
 										<span class="add"></span>
 									</a>
 								</span>
-								<a href="/admin/tipe-penghuni/index">Daftar Tipe Penghuni</a>
+								<a href="/admin/category/index">Daftar Category</a>
+							</li>	
+						</ul>
+						<ul>				
+							<li>
+								<span class="action right timespan">
+									<a title="Tambah Content" class="tt_atas" href="/admin/Content/add">
+										<span class="add"></span>
+									</a>
+								</span>
+								<a href="/admin/tipe-penghuni/index">Daftar Content</a>
+							</li>	
+						</ul>
+						<ul>				
+							<li>
+								<span class="action right timespan">
+									<a title="Tambah SubCategory" class="tt_atas" href="/admin/SubCategory/add">
+										<span class="add"></span>
+									</a>
+								</span>
+								<a href="/admin/subcategory/index">Daftar SubCategory</a>
+							</li>	
+						</ul>
+						<ul>				
+							<li>
+								<span class="action right timespan">
+									<a title="Tambah SubCategoryContent" class="tt_atas" href="/admin/SubCategoryContent/add">
+										<span class="add"></span>
+									</a>
+								</span>
+								<a href="/admin/SubCategoryContent/index">Daftar SubCategoryContent</a>
+							</li>	
+						</ul>
+						<ul>				
+							<li>
+								<span class="action right timespan">
+									<a title="Tambah Content" class="tt_atas" href="/admin/content/add">
+										<span class="add"></span>
+									</a>
+								</span>
+								<a href="/admin/content/index">Daftar Content</a>
 							</li>	
 						</ul>
 
-						<h1 id="project_tab" class="UI_Action_Bar">
+						<!---<h1 id="project_tab" class="UI_Action_Bar">
 							Data Penghuni
-						</h1>
-						<ul>
-							<?
-							$TipePenghuniService = new TipePenghuniService();
-							$rows = $TipePenghuniService->getAllData();
-							foreach($rows as $row)
-							{
-								echo '<li>';
-								if ($row->id > 4) {
-									echo '<span class="action right timespan">
-										<a title="Tambah Penghuni" class="tt_atas" href="/admin/penghuni/add/tipe/' . $row->id . '">
-											<span class="add"></span>
-										</a>
-									</span>';
-								}
-								echo '<a href="/admin/penghuni/index/tipe/' . $row->id . '">Daftar ' . $row->tipe_penghuni . '</a>';
-								echo '</li>';
-							}
-							?>
-						</ul>
-
-						<h1 id="project_tab" class="UI_Action_Bar">
-							Data Website
-						</h1>
-						<ul>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Pengumuman" class="tt_atas" href="/admin/pengumuman/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/pengumuman/index">Daftar Pengumuman</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Berita" class="tt_atas" href="/admin/berita/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/berita/index">Daftar Berita</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Regulasi" class="tt_atas" href="/admin/regulasi/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/regulasi/index">Daftar Regulasi</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Foto" class="tt_atas" href="/admin/foto/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/foto/index">Daftar Foto</a>
-							</li>
-						</ul>
-
-						<h1 id="project_tab" class="UI_Action_Bar">
-							Data Transaksi
-						</h1>
-						<ul>
-							<li>
-								<a href="/admin/pengaduan/index">Daftar Pengaduan</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Kendaraan" class="tt_atas" href="/admin/kendaraan/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/kendaraan/index">Daftar Kendaraan</a>
-							</li>
-							<li>
-								<span class="action right timespan">
-									<a title="Tambah Kehilangan" class="tt_atas" href="/admin/kehilangan/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/kehilangan/index">Daftar Kehilangan</a>
-							</li>
-						</ul>
-
+						</h1>--->
 					<? } elseif ($peran == "viewer") { ?>
 						
 					<? } ?>	
-
-					<!--<h1 id="project_tab" class="UI_Action_Bar">
-						Data Laporan
-					</h1>
-					<ul>
-						<li>
-							<a href="/admin/laporan/index">Laporan</a>
-						</li>
-						<li>
-							<a href="/admin/rekapitulasi/index">Rekapitulasi</a>
-						</li>
-						<li>
-							<a href="/admin/statistik/index">Statistik</a>
-						</li>
-					</ul>-->
 				</div>
 			</div>        
         </div>

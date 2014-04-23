@@ -16,7 +16,18 @@ class ContentService
 		$result = $this->content->fetchRow($select);
 		return $result;
 	}
+	
+	function getDataWhereIdCategory($id)
+	{
+		$select = $this->content->select()
+			->setIntegrityCheck(false)
+			->from(array('a' => 'content'), array('*'))
+			->where('a.sub_category_content = ?', $id);
 
+		$result = $this->content->fetchAll($select);
+		return $result;
+	}
+	
 	function getAllData()
 	{ 
 		$select = $this->content->select()

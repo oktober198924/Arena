@@ -11,7 +11,7 @@ class BrandService
 		$select = $this->brand->select()
 			->setIntegrityCheck(false)
 			->from(array('a' => 'brand'), array('*'))
-			->where('a.id = ?', $id);
+			->where('a.id_brand = ?', $id);
 
 		$result = $this->brand->fetchRow($select);
 		return $result;
@@ -54,13 +54,13 @@ class BrandService
 			'tanggal_update' => $tanggal_log
 		);
  		
-		$where = $this->brand->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->brand->getAdapter()->quoteInto('id_brand = ?', $id);
 		$this->brand->update($params, $where);
 	}
 
 	public function deleteData($id)
 	{
-		$where = $this->brand->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->brand->getAdapter()->quoteInto('id_brand = ?', $id);
 		$this->brand->delete($where);
 	}
 
@@ -75,7 +75,7 @@ class BrandService
 			'tanggal_update' => $tanggal_log
 		);
  		
-		$where = $this->brand->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->brand->getAdapter()->quoteInto('id_brand = ?', $id);
 		$this->brand->update($params, $where);
 	}
 

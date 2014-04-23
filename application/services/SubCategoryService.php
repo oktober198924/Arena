@@ -11,9 +11,20 @@ class SubCategoryService
 		$select = $this->sub_category->select()
 			->setIntegrityCheck(false)
 			->from(array('a' => 'sub_category'), array('*'))
-			->where('a.id = ?', $id);
+			->where('a.id_sub_category = ?', $id);
 
 		$result = $this->sub_category->fetchRow($select);
+		return $result;
+	}
+
+	function getDataWhereIdCategory($id)
+	{
+		$select = $this->sub_category->select()
+			->setIntegrityCheck(false)
+			->from(array('a' => 'sub_category'), array('*'))
+			->where('a.id_category = ?', $id);
+
+		$result = $this->sub_category->fetchAll($select);
 		return $result;
 	}
 
@@ -54,13 +65,13 @@ class SubCategoryService
 			'tanggal_update' => $tanggal_log
 		);
  		
-		$where = $this->sub_category->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->sub_category->getAdapter()->quoteInto('id_sub_category = ?', $id);
 		$this->sub_category->update($params, $where);
 	}
 
 	public function deleteData($id)
 	{
-		$where = $this->sub_category->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->sub_category->getAdapter()->quoteInto('id_sub_category = ?', $id);
 		$this->sub_category->delete($where);
 	}
 
@@ -75,8 +86,15 @@ class SubCategoryService
 			'tanggal_update' => $tanggal_log
 		);
  		
-		$where = $this->sub_category->getAdapter()->quoteInto('id = ?', $id);
+		$where = $this->sub_category->getAdapter()->quoteInto('id_sub_category = ?', $id);
 		$this->sub_category->update($params, $where);
+	}
+
+	public function enumData($sql)
+	{
+		$db = Zend_Registry::get('db');		
+		$stmt = $db->query($sql);
+		return $stmt->fetch();
 	}
 
 }

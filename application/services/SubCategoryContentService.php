@@ -17,6 +17,17 @@ class SubCategoryContentService
 		return $result;
 	}
 
+	function getDataWhereIdSubCategory($id)
+	{
+		$select = $this->sub_category_content->select()
+			->setIntegrityCheck(false)
+			->from(array('a' => 'sub_category_content'), array('*'))
+			->where('a.id_sub_category = ?', $id);
+
+		$result = $this->sub_category_content->fetchAll($select);
+		return $result;
+	}
+
 	function getAllData()
 	{ 
 		$select = $this->sub_category_content->select()
