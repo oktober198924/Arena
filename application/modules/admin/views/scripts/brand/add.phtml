@@ -1,0 +1,19 @@
+<script type="text/javascript">
+$(function() {
+	$("#compose").validate();
+});
+</script>
+
+<div class="content-header"></div>
+<div class="UI_Header_Title">
+	<h1><?=$this->avatar;?>  Tambah brand</h1>
+	<div class="header_nav_links"><a href="/admin/brand">Back to Daftar brand</a></div>
+</div>
+<div class="clear"></div>
+<form id="compose" name="compose" method="post" action="" enctype="multipart/form-data">
+	<div class="tabular">
+		<p><label>Nama Brand</label>		<input class="required" type="text" id="brand" autocomplete="disable" name="brand" value=""  /> <font color="red">*</font></p>				
+		<p class="savecancel"><label class="UIbutton-small"><input type="submit" value="Simpan" class=""/></label><a href="/admin/brand" class="UIbutton-small">Batal</a></p>
+	</div>
+</form>
+<div style="clear:both"></div>

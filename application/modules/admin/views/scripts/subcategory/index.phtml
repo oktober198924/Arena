@@ -1,0 +1,55 @@
+<script type="text/javascript">
+$(function(){
+	$("table")
+		.tablesorter({theme: 'blue', widthFixed: true, widgets: ['zebra', 'filter']})
+		.tablesorterPager({container: $(".pager"), 
+							output: '{startRow} - {endRow} / {filteredRows} ({totalRows})', 
+							fixedHeight: true, 
+							removeRows: false, 
+							cssGoto: '.gotoPage' });
+});
+</script>
+<div class="content-header"></div>
+	<div class="UI_Header_Title">
+		<h1><?=$this->avatar;?>  Daftar Sub Category</h1>
+		<div class="header_nav_links"><span class="right context_menu"><a href="/admin/subcategory/add" class="UIlink-button small right">Tambah Sub Category</a></span>
+	</div>
+</div>
+<div class="clear"></div>
+<br>
+<? if (count($this->rows) > 0) { ?>
+	<?=$this->pager;?>
+	<table cellspacing="1" cellpadding="6" width=100% class="tablesorter">
+		<thead>
+			<tr>
+				<th align="center" width="5px"> </th>
+				<th align="center">Sub Category</th>
+				<th align="center">Tanggal</th>
+				<td class="top" align="center" width="40px">Aktif</td>
+				<td class="top" align="center"></td>				
+			</tr>
+		</thead>
+		<tbody>
+		<?php
+			$i = 1;
+			foreach($this->rows as $row) 
+			{
+				//$status = ($row->status == 1) ? "checked" : "";
+				echo '<tr>';
+				echo '<td>'.$i++.'</td>';
+				echo '<td>'.$row->sub_category.'</td>';
+				echo '<td>'.$this->FormatDate($row->tanggal_update).'</td>';
+				echo '<td align="center">'.$this->GetStatus($row->status).'</td>';
+				echo '<td><div align="center">';
+				echo '<a href="/admin/subcategory/edit/id/'.$row->id_sub_category.'/id_category/'.$row->id_category.'" >EDIT</a>';
+				echo ' | ';
+				echo '<a href="/admin/subcategory/delete/id/'.$row->id_sub_category.'" onclick="return confirmDelete();">DELETE</a>';
+				echo '</div></td></tr>';
+			}
+		?>		
+		</tbody>
+	</table>
+<? } else {
+	echo 'Data tidak ditemukan.';
+}
+?>
