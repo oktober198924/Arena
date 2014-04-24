@@ -1,0 +1,55 @@
+<script type="text/javascript">
+$(function(){
+	$("table")
+		.tablesorter({theme: 'blue', widthFixed: true, widgets: ['zebra', 'filter']})
+		.tablesorterPager({container: $(".pager"), 
+							output: '{startRow} - {endRow} / {filteredRows} ({totalRows})', 
+							fixedHeight: true, 
+							removeRows: false, 
+							cssGoto: '.gotoPage' });
+});
+</script>
+<div class="content-header"></div>
+	<div class="UI_Header_Title">
+		<h1><?=$this->avatar;?>  Daftar Content</h1>
+		<div class="header_nav_links"><span class="right context_menu"><a href="/admin/content/add" class="UIlink-button small right">Tambah Content</a></span>
+	</div>
+</div>
+<div class="clear"></div>
+<br>
+<? if (count($this->rows) > 0) { ?>
+	<?=$this->pager;?>
+	<table cellspacing="1" cellpadding="6" width=100% class="tablesorter">
+		<thead>
+			<tr>
+				<th align="center" width="5px"> </th>
+				<th align="center">Sub Category</th>
+				<th align="center">Tanggal</th>
+				<td class="top" align="center" width="40px">Aktif</td>
+				<td class="top" align="center"></td>				
+			</tr>
+		</thead>
+		<tbody>
+		<?php
+			$i = 1;
+			foreach($this->rows as $row) 
+			{
+				//$status = ($row->status == 1) ? "checked" : "";
+				echo '<tr>';
+				echo '<td>'.$i++.'</td>';
+				echo '<td>'.$row->content.'</td>';
+				echo '<td>'.$this->FormatDate($row->tanggal_update).'</td>';
+				echo '<td align="center">'.$this->GetStatus($row->status).'</td>';
+				echo '<td><div align="center">';
+				echo '<a href="/admin/content/edit/id/'.$row->id_content.'/id_sub_category/'.$row->sub_category_content.'" >EDIT</a>';
+				echo ' | ';
+				echo '<a href="/admin/content/delete/id/'.$row->id_content.'" onclick="return confirmDelete();">DELETE</a>';
+				echo '</div></td></tr>';
+			}
+		?>		
+		</tbody>
+	</table>
+<? } else {
+	echo 'Data tidak ditemukan.';
+}
+?>
