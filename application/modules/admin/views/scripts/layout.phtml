@@ -55,7 +55,7 @@ $username = Zend_Auth::getInstance()->getIdentity()->nama;
 				<div class="menu">
 					<? if ($peran == "admin") { ?>
 						<h1 id="project_tab" class="UI_Action_Bar">
-							Data Referensi
+							Data Basic
 						</h1>
 						<ul>				
 							<li>
@@ -80,16 +80,6 @@ $username = Zend_Auth::getInstance()->getIdentity()->nama;
 						<ul>				
 							<li>
 								<span class="action right timespan">
-									<a title="Tambah Content" class="tt_atas" href="/admin/Content/add">
-										<span class="add"></span>
-									</a>
-								</span>
-								<a href="/admin/tipe-penghuni/index">Daftar Content</a>
-							</li>	
-						</ul>
-						<ul>				
-							<li>
-								<span class="action right timespan">
 									<a title="Tambah SubCategory" class="tt_atas" href="/admin/SubCategory/add">
 										<span class="add"></span>
 									</a>
@@ -100,11 +90,11 @@ $username = Zend_Auth::getInstance()->getIdentity()->nama;
 						<ul>				
 							<li>
 								<span class="action right timespan">
-									<a title="Tambah SubCategoryContent" class="tt_atas" href="/admin/SubCategoryContent/add">
+									<a title="Tambah SubCategoryContent" class="tt_atas" href="/admin/subcategorycontent/add">
 										<span class="add"></span>
 									</a>
 								</span>
-								<a href="/admin/SubCategoryContent/index">Daftar SubCategoryContent</a>
+								<a href="/admin/subcategorycontent/index">Daftar SubCategoryContent</a>
 							</li>	
 						</ul>
 						<ul>				
@@ -115,6 +105,19 @@ $username = Zend_Auth::getInstance()->getIdentity()->nama;
 									</a>
 								</span>
 								<a href="/admin/content/index">Daftar Content</a>
+							</li>	
+						</ul>
+						<h1 id="project_tab" class="UI_Action_Bar">
+							Data Input 
+						</h1>
+						<ul>				
+							<li>
+								<span class="action right timespan">
+									<a title="Tambah Type HP" class="tt_atas" href="/admin/type/add">
+										<span class="add"></span>
+									</a>
+								</span>
+								<a href="/admin/type/index">Daftar Type HP</a>
 							</li>	
 						</ul>
 

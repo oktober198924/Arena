@@ -39,12 +39,13 @@ class SubCategoryContentService
 		return $result;
 	}
 
-	function addData($sub_category_content) 
+	function addData($id_sub_category, $sub_category_content) 
 	{
 		$user_log = Zend_Auth::getInstance()->getIdentity()->pengguna;
 		$tanggal_log = date('Y-m-d H:i:s');
 
 		$params = array(
+			'id_sub_category' => $id_sub_category, 
 			'sub_category_content' => $sub_category_content, 
 			'user_input' => $user_log,
 			'tanggal_input' => $tanggal_log,
@@ -54,13 +55,14 @@ class SubCategoryContentService
 		$this->sub_category_content->insert($params);	
 	}
 
-	function editData($id, $sub_category_content)
+	function editData($id, $id_sub_category, $sub_category_content) 
 	{
 		$user_log = Zend_Auth::getInstance()->getIdentity()->pengguna;
 		$tanggal_log = date('Y-m-d H:i:s');
 
 		$params = array(
-			'sub_category_content' => $sub_category_content, 
+			'id_sub_category' => $id_sub_category, 
+			'sub_category_content' => $sub_category_content,  
 			'user_update' => $user_log,
 			'tanggal_update' => $tanggal_log
 		);
@@ -88,6 +90,13 @@ class SubCategoryContentService
  		
 		$where = $this->sub_category_content->getAdapter()->quoteInto('id = ?', $id);
 		$this->sub_category_content->update($params, $where);
+	}
+	
+	public function enumData($sql)
+	{
+		$db = Zend_Registry::get('db');		
+		$stmt = $db->query($sql);
+		return $stmt->fetchall();
 	}
 
 }

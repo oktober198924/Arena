@@ -1,28 +1,3 @@
- <?	
- // $this->SubCategoryService = new SubCategoryService();
- // $this->SubCategoryContentService = new SubCategoryContentService();
- // $this->TypeSpecService = new TypeSpecService();
- // foreach ($this->rowsCategory as $valueCategory) {
- // 	echo $valueCategory->category.'<br>';
- // 	$rowsSubCategory = $this->SubCategoryService->getDataWhereIdCategory($valueCategory->id_category);
-
-
- // 	foreach ($rowsSubCategory as $valueSubCategory) {
- // 		echo '-- '.$valueSubCategory->sub_category.'<br>';
- // 		$rowsSubCategoryContent = $this->SubCategoryContentService->getDataWhereIdSubCategory($valueSubCategory->id_sub_category);
- // 		foreach ($rowsSubCategoryContent as $valueSubCategoryContent) {
- // 			// echo '****'.$valueSubCategoryContent->id.'<br>';
- // 			 $rowsContent = $this->TypeSpecService->getAllDataContent(4, $valueSubCategoryContent->id);
- // 			 echo '**** ';
- // 			 foreach ($rowsContent as $valueContent) {
- // 			 	echo $valueContent->content;
- // 			 }
- // 			 echo '<br>';
- // 		}
- // 	}
- // }
- // die();
- ?>
 <script type="text/javascript" language="javascript">
 AUTOCOMPLETE_LIST_URL = "/quicksearch-6226.jpg";
 </script>
@@ -169,37 +144,11 @@ window.open( 'help.php3?term=' + strURL, '_blank', 'toolbar=no,location=no,direc
 </script>
 
 <div id="specs-list">
-<?
- $this->SubCategoryService = new SubCategoryService();
- $this->SubCategoryContentService = new SubCategoryContentService();
- $this->TypeSpecService = new TypeSpecService();
- foreach ($this->rowsCategory as $valueCategory) {
- 	$rowsSubCategory = $this->SubCategoryService->getDataWhereIdCategory($valueCategory->id_category);
- 	$rowspan = 0;
- 	foreach ($rowsSubCategory as $valueSubCategory) {
- 		$rowspan++;
- 	}
- 	echo '<table cellspacing="0">
-			<th rowspan="'.$rowspan.'" scope="row">'
-			.$valueCategory->category.
-			'</th>';
- 	foreach ($rowsSubCategory as $valueSubCategory) {
- 		echo '<tr>';
- 		echo '<td class="ttl">'.$valueSubCategory->sub_category.'</td>';
- 		$rowsSubCategoryContent = $this->SubCategoryContentService->getDataWhereIdSubCategory($valueSubCategory->id_sub_category);
- 		foreach ($rowsSubCategoryContent as $valueSubCategoryContent) {
- 			 $rowsContent = $this->TypeSpecService->getAllDataContent(4, $valueSubCategoryContent->id);
-	 		echo '<td class="nfo">';
-	 		foreach ($rowsContent as $valueContent) {
-	 			echo $valueContent->content;
-	 		}
-	 		echo '</td>';
- 		}
- 		echo '</tr>';
- 	}
- 	echo '</table>';
- }
-?>
+ <?	
+	foreach ($this->rows as $key => $value) {
+		
+	}
+ ?>
 </div>
 <p class="note"><strong>Disclaimer.</strong> We can not guarantee that the information on this page is 100% correct. <a href=# onClick="helpW('legal.htm');">Read more</a></p>
 					

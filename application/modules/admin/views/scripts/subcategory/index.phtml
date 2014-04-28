@@ -41,9 +41,9 @@ $(function(){
 				echo '<td>'.$this->FormatDate($row->tanggal_update).'</td>';
 				echo '<td align="center">'.$this->GetStatus($row->status).'</td>';
 				echo '<td><div align="center">';
-				echo '<a href="/admin/subcategory/edit/id/'.$row->id_category.'" >EDIT</a>';
+				echo '<a href="/admin/subcategory/edit/id/'.$row->id_sub_category.'/id_category/'.$row->id_category.'" >EDIT</a>';
 				echo ' | ';
-				echo '<a href="/admin/subcategory/delete/id/'.$row->id_category.'" onclick="return confirmDelete();">DELETE</a>';
+				echo '<a href="/admin/subcategory/delete/id/'.$row->id_sub_category.'" onclick="return confirmDelete();">DELETE</a>';
 				echo '</div></td></tr>';
 			}
 		?>		

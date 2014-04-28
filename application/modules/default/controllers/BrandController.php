@@ -11,13 +11,14 @@ class BrandController extends Zend_Controller_Action
 	public function preDispatch() 
 	{
 		$this->BrandService = new BrandService();
-		$this->CategoryService = new CategoryService();
+		$this->TypeSpecService = new TypeSpecService();
 	}
 
     public function indexAction()
-    {
+    {	
+    	$id = $this->_getParam('id');
 		$this->view->rowsBrand = $this->BrandService->getAllData();
-		$this->view->rowsCategory = $this->CategoryService->getAllData();
+		$this->view->rows = $this->TypeSpecService->getDataCopmlite($id);
     }
 
 	public function compareAction()

@@ -39,12 +39,13 @@ class SubCategoryService
 		return $result;
 	}
 
-	function addData($sub_category) 
+	function addData($id_category,$sub_category) 
 	{
 		$user_log = Zend_Auth::getInstance()->getIdentity()->pengguna;
 		$tanggal_log = date('Y-m-d H:i:s');
 
 		$params = array(
+			'id_category' => $id_category, 
 			'sub_category' => $sub_category, 
 			'user_input' => $user_log,
 			'tanggal_input' => $tanggal_log,
@@ -54,13 +55,14 @@ class SubCategoryService
 		$this->sub_category->insert($params);	
 	}
 
-	function editData($id, $sub_category)
+	function editData($id, $id_category,$sub_category)
 	{
 		$user_log = Zend_Auth::getInstance()->getIdentity()->pengguna;
 		$tanggal_log = date('Y-m-d H:i:s');
 
 		$params = array(
-			'sub_category' => $sub_category, 
+			'id_category' => $id_category, 
+			'sub_category' => $sub_category,
 			'user_update' => $user_log,
 			'tanggal_update' => $tanggal_log
 		);
@@ -94,7 +96,7 @@ class SubCategoryService
 	{
 		$db = Zend_Registry::get('db');		
 		$stmt = $db->query($sql);
-		return $stmt->fetch();
+		return $stmt->fetchall();
 	}
 
 }

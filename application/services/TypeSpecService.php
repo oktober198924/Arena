@@ -6,6 +6,38 @@ class TypeSpecService
 		$this->type_spec = new TypeSpec();
 	}
 
+	function getDataCopmlite($id)
+	{
+		$sql = "SELECT b.type, b.brand, a.category, a.sub_category, 
+				CASE WHEN a.show_view = 1 THEN
+					GROUP_CONCAT(CONCAT(a.sub_category_content, ': ', a.content) SEPARATOR ' | ') 
+				ELSE
+					GROUP_CONCAT(a.content SEPARATOR ' | ') 
+				END AS content
+				FROM (
+					SELECT a.id_category, b.id_sub_category, c.id_sub_category_content, d.id_content,
+					a.category, b.sub_category, c.sub_category_content, d.content, c.show_view
+					FROM category a
+					LEFT JOIN sub_category b ON a.id_category = b.id_category
+					LEFT JOIN sub_category_content c ON b.id_sub_category = c.id_sub_category
+					LEFT JOIN content d ON c.id_sub_category_content = d.id_sub_category_content
+				) a
+				LEFT JOIN (
+					SELECT a.*, b.type, c.brand
+					FROM type_spec a
+					LEFT JOIN type b ON a.id_type = b.id_type
+					LEFT JOIN brand c ON b.id_brand = c.id_brand
+				) b ON a.id_content = b.id_content
+				WHERE b.id_type = $id
+				GROUP BY b.type, b.brand, a.category, a.sub_category";
+
+		$db = Zend_Registry::get('db');		
+		$stmt = $db->query($sql);
+		$stmt->setFetchMode(Zend_Db::FETCH_OBJ); 
+		$result = $stmt->fetchAll();
+		return $result;
+	}
+
 	function getData($id)
 	{
 		$select = $this->type_spec->select()
